@@ -13,16 +13,11 @@ pipeline {
         }
 	stage('Version') {
 	    agent {
-		docker {
-	    	    image 'openjdk:8'
-		}
+		docker 'openjdk:8-jre'
 	    }
-	    stages {
-		stage('S1') {
-		    steps {
-			sh 'java -version'
-		    }
-		}
+	    
+	    steps {
+		sh 'java -version'
 	    }
 	}
     }
