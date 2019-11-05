@@ -14,7 +14,7 @@ pipeline {
 	stage('Version') {
 	    agent {
 		docker {
-	    	    image 'openjdk:8-jre'
+	    	    image 'openjdk:8'
 		}
 	    }
 	    stages {
