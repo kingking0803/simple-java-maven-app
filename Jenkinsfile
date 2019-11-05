@@ -4,9 +4,6 @@ pipeline {
             image 'maven:3-alpine' 
             args '-v /root/.m2:/root/.m2' 
         }
-	docker {
-	    image 'openjdk:8-jre'
-	}
     }
     stages {
         stage('Build') { 
@@ -14,6 +11,20 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package' 
             }
         }
+	stage('Version') {
+	    agent {
+		docker {
+	    	    image 'openjdk:8-jre'
+		}
+	    }
+	    stages {
+		stage('S1') {
+		    steps {
+			sh 'java -version'
+		    }
+		}
+	    }
+	}
     }
     post {
         always {
