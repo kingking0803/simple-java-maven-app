@@ -4,6 +4,9 @@ pipeline {
             image 'maven:3-alpine' 
             args '-v /root/.m2:/root/.m2' 
         }
+	docker {
+	    image 'openjdk:8-jre'
+	}
     }
     stages {
         stage('Build') { 
@@ -14,7 +17,7 @@ pipeline {
     }
     post {
         always {
-            echo 'This will always run'
+            echo 'java -version'
         }
         success {
             echo 'This will run only if successful'
