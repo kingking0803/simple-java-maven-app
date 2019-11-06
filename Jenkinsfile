@@ -8,18 +8,9 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh 'mvn -B -DskipTests clean package' 
+                sh 'mvn -B -DskipTests clean package'
             }
         }
-	stage('Version') {
-	    agent {
-		docker 'openjdk:8-jre'
-	    }
-	    
-	    steps {
-		sh 'java -version'
-	    }
-	}
     }
     post {
         always {
