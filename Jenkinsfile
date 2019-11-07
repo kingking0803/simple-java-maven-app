@@ -17,7 +17,8 @@ pipeline {
             sh 'java -version'
         }
         success {
-            echo 'This will run only if successful'
+            sh 'cd target'
+	    sh 'pwd'
         }
         failure {
             echo 'This will run only if failed'
@@ -26,8 +27,7 @@ pipeline {
             echo 'This will run only if the run was marked as unstable'
         }
         changed {
-            sh 'cd target'
-	    sh 'pwd'
+            
         }
     }
 }
